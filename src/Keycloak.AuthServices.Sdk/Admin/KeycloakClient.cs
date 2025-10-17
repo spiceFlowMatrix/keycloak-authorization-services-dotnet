@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using Keycloak.AuthServices.Sdk.Admin.Models;
 using Keycloak.AuthServices.Sdk.Admin.Requests.Groups;
 using Keycloak.AuthServices.Sdk.Admin.Requests.Users;
+using Keycloak.AuthServices.Sdk.Admin.Requests.Clients;
 using Keycloak.AuthServices.Sdk.Utils;
 
 /// <summary>
@@ -537,5 +538,21 @@ public class KeycloakClient : IKeycloakClient
         return responseMessage!;
     }
 
+    #endregion
+
+    #region ClientRegion
+    ///<inheritdoc/>
+    public async Task<HttpResponseMessage> GetClientsWithResponseAsync(
+        string realm,
+        GetClientsRequestParameters? parameters = default,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var path = ApiUrls.GetClients.WithRealm(realm);
+
+        var responseMessage = await this.httpClient.GetAsync(path, cancellationToken);
+
+        return responseMessage!;
+    }
     #endregion
 }

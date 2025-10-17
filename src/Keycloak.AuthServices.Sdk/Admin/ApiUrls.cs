@@ -62,6 +62,14 @@ internal static class ApiUrls
 
     #endregion
 
+    #region Client API
+    
+    internal const string GetClients = $"{GetRealm}/clients";
+
+    internal const string CreateClient = $"{GetRealm}/clients";
+
+    #endregion
+
     public static string WithRealm(this string path, string realm) =>
         path.Replace(RealmParam, realm);
 }
